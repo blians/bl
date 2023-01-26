@@ -1,3 +1,4 @@
+
 .div1{
     background-color: rgb(49, 165, 17);
     border-radius: 50px;
@@ -10,10 +11,10 @@
 }
 .h1{
     position: relative;
-    left: 150px;
+    left: 80px;
     margin: 0 auto;
     display: block;
-    width: 500px;
+    width: 400px;
     height: 70px;
 }
 .img1{
@@ -29,6 +30,6 @@
     top: 50px;
     margin: 0 auto;
     display: block;
-    width: 500px;
+    width: 400px;
     font-size: 20px;
 }
