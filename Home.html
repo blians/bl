@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>𝘽𝙡.𝙞𝙖𝙣𝙨 - 𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕 </title>
+    <meta charset="UTF-8">
+    <script src="JS/Menubar.js"></script>
+    <!--<title> Responsive Sidebar Menu</title>-->
+
+
+    <link rel="stylesheet" href="CSS/Bar.css">
+    <!-- Boxicons CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://kit.fontawesome.com/fb396cfb0e.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i>
+      
+        <div class="logo_name">𝘽𝙡.𝙞𝙖𝙣𝙨<br>𝘽𝙖𝙩𝙘𝙝 2022</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <!-- <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li> -->
+      <li id="pRofile2">
+        <a href="#" onclick='loadHtml("temp","Profile.html")'>
+          <i class="fa-solid fa-user"></i>
+          <span class="links_name">Profile</span>
+        </a>
+        <span class="tooltip">Profile</span>
+      </li>
+      <li id="pRofile2">
+        <a href="#" onclick='loadHtml("temp","Dashboard.html")'>
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li id="pRofile2">
+       <a href="#" onclick='loadHtml("temp","Bio.html")'>
+        <i class="fa-solid fa-database"></i>
+         <span class="links_name">Student Data</span>
+       </a>
+       <span class="tooltip">Student Data</span>
+     </li>
+     <li id="pRofile2">
+       <a href="#" onclick='loadHtml("temp","Help.html")'>
+        <i class='bx bxl-youtube'></i>
+         <span class="links_name">Gallary</span>
+       </a>
+       <span class="tooltip">Gallary</span>
+     </li>
+     <li id="pRofile2">
+       <a href="#" onclick='loadHtml("temp","Chat.html")'>
+        <i class='bx bxl-messenger' ></i>
+         <span class="links_name">Meassage</span>
+       </a>
+       <span class="tooltip">Meassage</span>
+     </li>
+     <li id="pRofile2">
+       <a href="https://chat.whatsapp.com/KZUFtyZZX5G1yRkvALELFB" target="_blank">
+        <i class='bx bxl-whatsapp' ></i>
+         <span class="links_name">WhatsApp</span>
+       </a>
+       <span class="tooltip">WhatsApp</span>
+     </li>
+     <li id="pRofile2">
+       <a href="https://t.me/TwistXGaming" target="_blank">
+        <i class='bx bxl-telegram' ></i>
+         <span class="links_name">Telegram</span>
+       </a>
+       <span class="tooltip">Telegram</span>
+     </li>
+     <li id="pRofile2">
+       <a href="#" onclick='loadHtml("temp","Help.html")'>
+        <i class='bx bxs-cart-add'></i>
+         <span class="links_name">Upload Gallary Data</span>
+       </a>
+       <span class="tooltip">Upload Gallary Data</span>
+     </li>
+     <li id="pRofile2">
+       <a href="#" onclick='loadHtml("temp","Help.html")'>
+        <i class='bx bxs-bug-alt'></i>
+         <span class="links_name">Report A Problem</span>
+       </a>
+       <span class="tooltip">Report A Problem</span>
+     </li>
+     <li id="pRofile2">
+      <a href="#" onclick='loadHtml("temp","Help.html")'>
+       <i class='bx bx-user-pin' ></i>
+        <span class="links_name">Help</span>
+      </a>
+      <span class="tooltip">Help</span>
+    </li>
+    <li id="pRofile1">
+      <a href="#" onclick='loadHtml("temp","sing.html?#")'>
+        <i class="fa-solid fa-user-plus"></i>
+        <span class="links_name">Sing-in/up</span>
+      </a>
+      <span class="tooltip">Sing-In/Up</span>
+    </li>
+     <li  id="pRofile2" class="profile">
+         <div class="profile-details">
+           <img src="" id="profilelogo" alt="profileImg">
+           <div class="name_job">
+             <div class="name" id="logoName"></div>
+             <div class="job">BL Ians</div>
+           </div>
+         </div>
+         <a href="#" id="logoutli" ><i class='bx bx-log-out'  id="log_out" ></i></a>
+     </li>
+    </ul>
+  </div>
+  <section class="home-section" id="temp">
+    <iframe style="position: fixed; height: 100%; width: 100%;" src="Dashboard.html" frameborder="0"></iframe>
+  </section>
+ 
+  
+  <script type="module">
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+  import {firebaseConfig} from "./JS/api.js";
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+
+  setTimeout(myGood, 1000);
+      function myGood(){
+        var pRofile2 = document.querySelectorAll('#pRofile2');
+        var pRofile1 = document.getElementById('pRofile1');
+        var user = localStorage.getItem("User_Name");
+        // console.log(localStorage.getItem("User_Photo")) ;
+        // console.log(localStorage.getItem("User_Email"));
+        // console.log(localStorage.getItem("User_Email_Verify"));
+        // console.log(localStorage.getItem("User_Create_Time"));
+        // console.log(localStorage.getItem("User_Last_Login_Time"));
+
+
+        if (user == null){
+          pRofile2[0].classList.add("seam");
+          pRofile2[1].classList.remove("seam");
+          pRofile2[2].classList.add("seam");
+          pRofile2[3].classList.remove("seam");
+          pRofile2[4].classList.add("seam");
+          pRofile2[5].classList.remove("seam");
+          pRofile2[6].classList.remove("seam");
+          pRofile2[7].classList.remove("seam");
+          pRofile2[8].classList.remove("seam");
+          pRofile2[9].classList.remove("seam");
+          pRofile2[10].classList.add("seam");
+          pRofile1.classList.remove("seam");
+
+        }else{
+          pRofile2[0].classList.remove("seam");
+          pRofile2[1].classList.remove("seam");
+          pRofile2[2].classList.remove("seam");
+          pRofile2[3].classList.remove("seam");
+          pRofile2[4].classList.remove("seam");
+          pRofile2[5].classList.remove("seam");
+          pRofile2[6].classList.remove("seam");
+          pRofile2[7].classList.remove("seam");
+          pRofile2[8].classList.remove("seam");
+          pRofile2[9].classList.remove("seam");
+          pRofile2[10].classList.remove("seam");
+          pRofile1.classList.add("seam");
+          var lnAme = document.getElementById("logoName");
+          lnAme.innerText = localStorage.getItem("User_Name");
+          var photoURL = window.localStorage.getItem("User_Photo");
+          if(photoURL==null || photoURL=="profile.jpg"){
+            console.log('Photo Error');
+          }else{
+            document.getElementById('profilelogo').src = photoURL;
+          }
+          
+          
+
+
+    }
+      
+      }
+
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  // searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+  //   sidebar.classList.toggle("open");
+  //   menuBtnChange(); //calling the function(optional)
+  // });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+    import {firebaseConfig} from "./JS/api.js";
+    const app1 = initializeApp(firebaseConfig);
+    const auth1 = getAuth(app1);
+
+    var logg = document.getElementById('logoutli');
+    function logout(){
+      signOut(auth1).then(() => {
+        // Sign-out successful.
+        console.log('Sign-out successful.');
+        localStorage.removeItem("User_Name");
+        localStorage.removeItem("User_Photo");
+        localStorage.removeItem("User_Email");
+        localStorage.removeItem("User_Email_Verify");
+        // localStorage.setItem("Bug",0);
+        // localStorage.removeItem("User_Create_Time");
+        // localStorage.removeItem("User_Last_Login_Time");
+        // window.location.reload();
+        
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.options.closeButton = true;
+        toastr.options.progressBar = true;
+        toastr.options.preventDuplicates = true;
+        toastr.info('Log in again now', 'Log-Out Success.')
+        setTimeout(myGof, 1500);
+        function myGof(){
+          window.location.reload();
+        }
+        
+
+
+
+      }).catch((error) => {
+        // An error happened.
+        console.log('Eroooooor')
+      });
+    };
+  logg.addEventListener('click', logout)
+  </script>
+</body>
+</html>

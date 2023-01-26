@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="CSS/Profile.css">
+</head>
+<body>
+    <div>
+        <img class="Img" id="pIc" src="" alt="" srcset="">
+    </div>
+    <div class="div1">
+        <pre><b id="nAme">Name         : </b></pre><br>
+        <pre><b id="seCtion">Section      : </b></pre><br>
+        <pre><b id="roLl">Roll         : </b></pre><br>
+        <pre><b id="pHone">Phone Number : </b></pre><br>
+        <pre><b id="email">Email        : </b></pre><br>
+    </div><br><br><br>
+    <div class="div2">
+        <pre><b>Change Profile Pic</b></pre><br>
+    </div><br>
+    <div class="div3">
+        <input type="file" accept="image/*" onchange="uploadImage(event)" />
+        <button onClick="window.location.reload();">Reload</button>
+        <p></p>
+    </div>
+</body>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+    import {firebaseConfig} from "./JS/api.js";
+    const app = initializeApp(firebaseConfig);
+    const auth1 = getAuth(app);
+    const db = getDatabase(app);
+    var user = auth1.currentUser;
+
+    setTimeout(myGood, 3000);
+      function myGood(){
+        var pRofile2 = document.querySelectorAll('#pRofile2');
+        var pRofile1 = document.getElementById('pRofile1');
+        var user = auth1.currentUser;
+        var displayName = user.displayName;
+        const email = user.email;
+        const photoURL = user.photoURL;
+
+        if (user !== null){
+
+            document.getElementById('pIc').src = photoURL;
+
+            var name = displayName;
+            var length = name.length;
+            var name = displayName.substr(-length,(length-4)).toUpperCase();
+            var nAme =document.getElementById('nAme');
+            nAme.innerText = "Name         : "+name;
+
+            var sEc = displayName.substr(-1,1).toUpperCase();
+            var nAme =document.getElementById('seCtion');
+            nAme.innerText = "Section      : "+sEc;
+
+            var rOll = displayName.substr(-3,2).toUpperCase();
+            var nAme =document.getElementById('roLl');
+            nAme.innerText = "Roll         : "+rOll;
+
+            const starCountRef = ref(db, sEc+"/"+rOll);
+            onValue(starCountRef, (snapshot) => {
+                if(snapshot.exists()){
+                    const phoneNumber = snapshot.val().Mobile_NO;
+                    var pHone = document.getElementById('pHone');
+                    pHone.innerText ='Phone Number : '+phoneNumber;
+
+                    const eMail = snapshot.val().Email;
+                    var pHone = document.getElementById('email');
+                    pHone.innerText ='Email        : '+eMail;
+                }else{console.log('errr')}
+            });
+                  
+
+        }else{
+            console.log(Error);
+        }
+      
+      }
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
+<script>
+    const firebaseConfig = {
+    apiKey: "AIzaSyA_C2H-nMgddaJk-fJ1VAWEOtRWero9Hzs",
+    authDomain: "graphite-bay-370409.firebaseapp.com",
+    databaseURL: "https://graphite-bay-370409-default-rtdb.firebaseio.com",
+    projectId: "graphite-bay-370409",
+    storageBucket: "graphite-bay-370409.appspot.com",
+    messagingSenderId: "584286098040",
+    appId: "1:584286098040:web:820b387e23b8503706538d",
+    measurementId: "G-HZT3MGGC9E"
+    };
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const auth = firebaseApp.auth();
+
+    function uploadImage(e){
+
+        var user = auth.currentUser;
+        var displayName = localStorage.getItem("User_Name");
+        var name = displayName;
+        var length = name.length;
+
+        var sEc = displayName.substr(-1,1).toUpperCase();
+
+        var rOll = displayName.substr(-3,2);
+
+        console.log(e.target.files[0])
+        const uid = firebaseApp.auth().currentUser.uid;
+        const fileRef = firebase.storage().ref().child(`/${sEc}/${rOll}/${uid}`)
+        const uploadTask =  fileRef.put(e.target.files[0])
+        uploadTask.on('state_changed', 
+    (snapshot) => {
+        
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        if(progress=='100'){
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.options.closeButton = true;
+            toastr.options.timeOut = 5000;
+            toastr.options.progressBar = true;
+            toastr.options.showMethod = 'slideDown';
+            toastr.options.hideMethod = 'slideUp';
+            toastr.options.preventDuplicates = true;
+            toastr.success('Press Reload Button to See Profile Pic.', 'Photo Upload Finish.')
+        };
+    }, 
+    (error) => {
+        console.log(error);
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.options.closeButton = true;
+        toastr.options.timeOut = 5000;
+        toastr.options.progressBar = true;
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.hideMethod = 'slideUp';
+        toastr.options.preventDuplicates = true;
+        toastr.error('Please Reload Your Page And Try Again.<br>Else You Can Report Us', 'Failed To Upload Profile Pic.')
+    }, 
+    () => {
+        
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+        firebase.auth().currentUser.updateProfile({
+            photoURL: downloadURL
+        });
+        localStorage.removeItem("User_Photo");
+        localStorage.setItem("User_Photo",downloadURL)
+        console.log('File available at', downloadURL);
+        });
+    }
+    );
+    
+    };
+</script>
+</html>

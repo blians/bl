@@ -1,0 +1,34 @@
+.div1{
+    background-color: rgb(49, 165, 17);
+    border-radius: 50px;
+    height: 600px;
+    width: 600px;
+    position: relative;
+    left: -30px;
+    margin: 0 auto;
+    display: block;
+}
+.h1{
+    position: relative;
+    left: 150px;
+    margin: 0 auto;
+    display: block;
+    width: 500px;
+    height: 70px;
+}
+.img1{
+    position: relative;
+    top: 50px;
+    margin: 0 auto;
+    display: block;
+    width: 500px;
+    height: 300px;
+}
+.div1 pre{
+    position: relative;
+    top: 50px;
+    margin: 0 auto;
+    display: block;
+    width: 500px;
+    font-size: 20px;
+}

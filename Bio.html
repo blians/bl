@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/Bio.css">
+    <script src="https://kit.fontawesome.com/fb396cfb0e.js" crossorigin="anonymous"></script>
+    <title>Student Data</title>
+</head>
+<body>
+    <div>
+        <article class="l-design-widht">
+              <div class="card card--accent">
+                <div id="div" style="font-size: 20px; display: table; margin: 0 auto;"></div>
+              <h2><i class="fa-solid fa-database"></i> Student Bio</h2>
+              <h2><i class="fa-solid fa-snowflake"></i> Section :</h2>
+              <label class="input">
+                <input style="text-transform:uppercase" id="sEc" class="input__field" type="text" placeholder=" " pattern="[A-Da-d]{1}" required/>
+                <span class="input__label">Enter Section :</span>
+              </label>
+              <h2><i class="fa-solid fa-snowflake"></i> Roll :</h2>
+              <label class="input">
+                <input class="input__field" id="rOll" type="number" placeholder=" " min="1" max="60" required/>
+                <span class="input__label">Enter Roll Number:</span>
+              </label>
+              
+              <div class="button-group">
+                <button type="submit" id="bTn1">Get Data</button>
+                <button type="reset" id="bTn2"><b>Reset</b></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="l-design-widht">
+            <div class="card card--accent">
+              <h1 style="font-size: 23px;"><pre id="num1">Name --------=> </pre></h1>
+              <h1 style="font-size: 23px;"><pre id="num2">Section -----=> </pre></h1>
+              <h1 style="font-size: 23px;"><pre id="num3">Roll --------=> </pre></h1>
+              <h1 style="font-size: 23px;"><pre id="num4">Phone Number => </pre></h1>
+              <h1 style="font-size: 23px;"><pre id="num5">Email -------=> </pre></h1>
+            </div>
+          <br>
+        </article>
+    </div>
+</body>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+import {firebaseConfig} from "./JS/api.js";
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+var user = auth.currentUser;
+
+var sEc = document.getElementById('sEc');
+var rOll =  document.getElementById('rOll');
+
+var bTn1 = document.getElementById('bTn1');
+var bTn2 = document.getElementById('bTn2');
+var div = document.getElementById('div');
+
+var name1 = document.getElementById('num1');
+var name2 = document.getElementById('num2');
+var name3 = document.getElementById('num3');
+var name4 = document.getElementById('num4');
+var name5 = document.getElementById('num5');
+
+var UserName = localStorage.getItem("User_Name");
+
+function require(){
+  if(UserName==null){
+      window.location.replace('Home.html');
+    }
+    else if(sEc.value === '' || sEc.value ==null){
+      div.innerText =  "Pls Enter a Section between A,B,C and D !  Then Enter Submit"
+    }
+    else if(rOll.value === "" || rOll.value ==null){
+      div.innerText =  "Pls Enter a Roll Number !  Then Enter Submit"
+    }
+    else if(rOll.value <= 0 || rOll.value >= 60){
+      div.innerText =  "Pls Enter a Roll Number from 1 to 60 !  Then Enter Submit"
+    }
+    else{
+      const starCountRef = ref(db, sEc.value.toUpperCase()+"/"+rOll.value);
+      onValue(starCountRef, (snapshot) => {
+        if(snapshot.exists()){
+            var phoneNumber = snapshot.val().Mobile_NO;
+            var email = snapshot.val().Email;
+            var namE = snapshot.val().Name;
+
+            name1.innerText = "Name --------=> "+namE;
+            name2.innerText = "Section -----=> "+sEc.value;
+            name3.innerText = "Roll --------=> "+rOll.value;
+            name4.innerText = "Phone Number => "+phoneNumber;
+            name5.innerText = "Email=> "+email;
+
+          }else{console.log('errr')};
+          });
+    }
+  };
+
+  bTn1.addEventListener('click', require);
+function reset(){
+  sEc.value = null;
+  rOll.value = null;
+  div.innerText = null;
+}
+bTn2.addEventListener('click', reset);
+</script>
+</html>

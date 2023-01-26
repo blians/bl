@@ -1,0 +1,89 @@
+body {
+    background: linear-gradient(to right, #3aa8e0, #44b750); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    color: #000;
+}
+
+.Img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 10px auto;
+    border: 10px solid rgb(82, 57, 92);
+    border-radius: 50%;
+    display: block;
+    
+}
+.div1{
+    padding: auto;
+    /* background-color: rgb(136, 90, 30); */
+    background: linear-gradient(45deg, rgba(14,208,173,1) 0%, rgba(231,209,48,1) 17%, rgba(155,69,237,1) 33%, rgba(217,44,201,1) 51%, rgba(221,56,88,1) 69%, rgba(73,178,77,1) 88%, rgba(0,212,255,1) 100%);
+    margin: 0 auto;
+	padding-left:12px;
+	padding-right:12px;
+    display: table;
+    line-height: 0;
+    content: "";
+    width: 400px;
+    border-radius: 10px;
+    border-color: #000;
+    
+}
+.div2{
+    padding: auto;
+    /* background-color: rgb(136, 90, 30); */
+    background: rgb(14,208,173);
+    background: linear-gradient(to top, #ffffff, #000000);
+    margin: 0 auto;
+	padding-left:12px;
+	padding-right:12px;
+    display: table;
+    line-height: 0;
+    content: "";
+    width: px;
+    border-radius: 10px;
+    border-color: #000;
+    
+}
+.div3 input{
+    position: relative;
+    padding: auto;
+    background-color: rgb(255, 255, 255);
+    /* background: rgb(14,208,173);
+    background: linear-gradient(311deg, rgba(14,208,173,1) 0%, rgba(231,209,48,1) 17%, rgba(155,69,237,1) 33%, rgba(217,44,201,1) 51%, rgba(221,56,88,1) 69%, rgba(73,178,77,1) 88%, rgba(0,212,255,1) 100%); */
+    margin: 0 auto;
+	padding-left:8px;
+	padding-right:0px;
+    display: table;
+    line-height: 0;
+    content: "";
+    width: 250px;
+    top: -10px;
+    border-radius: 20px;
+    border-color: #000;
+    
+}
+.div3 button{
+    position: relative;
+    display: table;
+    background-color: rgb(16, 15, 15);
+    color: #ffffff;
+    margin: 0 auto;
+}
+.div3 p{
+
+    position: relative;
+    display: table;
+    color: #000000;
+    margin: 0 auto;
+}
+.div1 pre{
+    font-size: 20px;
+    
+}
+.div2 pre{
+    font-size: 20px;
+    
+}
