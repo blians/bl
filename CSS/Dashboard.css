@@ -2,7 +2,7 @@
     background-color: rgb(49, 165, 17);
     border-radius: 50px;
     height: 600px;
-    width: 600px;
+    width: 400px;
     position: relative;
     left: -30px;
     margin: 0 auto;
@@ -21,8 +21,8 @@
     top: 50px;
     margin: 0 auto;
     display: block;
-    width: 500px;
-    height: 300px;
+    width: 400px;
+    height: 250px;
 }
 .div1 pre{
     position: relative;
